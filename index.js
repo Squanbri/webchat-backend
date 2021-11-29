@@ -5,7 +5,7 @@ const authRouter = require('./routes/authRouter')
 const messageRouter = require('./routes/messageRouter')
 const userRouter = require('./routes/userRouter')
 
-const PORT = 5000
+const PORT = process.env.PORT || 80
 const DB_URL = 'mongodb+srv://web-chat:1plQ1Bio13l03PVM@cluster0.matya.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 const app = express()
