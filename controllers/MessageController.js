@@ -29,11 +29,26 @@ class MessageController {
 
   async getCountUncheckedMessages(req, res) {
     try {
-      const { user1, user2 } = req.body
-      const count = await Message.count({from: user2, to: user1, check: false})
+      const { userId1, userId2 } = req.body
+      const count = await Message.count({from: userId2, to: userId1, check: false})
       
       res.json(count)
     } catch {
+      res.status(500).json(e)
+    }
+  }
+
+  async checkAllMessages(req, res) {
+    try {
+      const { userId1, userId2 } = req.body
+      const count = await Message.updateMany(
+        {from: userId1, to: userId2, check: false},
+        {$set: {check: true}},
+      )
+      console.log(req.body)
+      
+      res.status(200).json({})
+    } catch (e) {
       res.status(500).json(e)
     }
   }

@@ -6,12 +6,13 @@ const User = new mongoose.Schema({
     required: true,
     unique: true
   },
-  password: {type: String, required: true},
-  firstName: {type: String, default: 'Пользователь'},
+  password: { type: String, required: true },
+  firstName: { type: String, default: 'Пользователь' },
   lastName: String,
   phone: String,
   city: String,
-  online: Boolean,
+  avatar: String,
+  online: { type: Boolean, default: false }
 })
 
 module.exports = mongoose.model('User', User)

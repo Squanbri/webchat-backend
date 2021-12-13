@@ -11,9 +11,23 @@ class UserController {
         email: user.email,
         city: user.city,
         phone: user.phone,
+        avatar: user.avatar,
+        online: user.online
       }))
 
       res.json({users: newUsers})
+    } catch (e) {
+      res.status(500).json(e)
+    }
+  }
+
+  async getUser(req, res) {
+    try {
+      const { _id } = req.body
+      const user = await User.findOne({ _id })
+      // console.log(req.body)
+
+      res.json({user: user})
     } catch (e) {
       res.status(500).json(e)
     }
